@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "babel_langlib"
+version = "0.0.0.1"
+description = "Fast, optimized and high-performance, high-load oriented library for i18n and l10n"
+authors = ["alexeev-prog <alexeev.dev@mail.ru>"]
+license = "GNU LGPL 2.1"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+orjson = "^3.10.12"
+toml = "^0.10.2"
+pyyaml = "^6.0.2"
+configparser = "^7.1.0"
+requests = "^2.32.3"
+deep-translator = "^1.11.4"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest-cov = "^6.0.0"
+pytest = "^8.3.4"
+ruff = "^0.8.4"
+black = "^24.10.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
