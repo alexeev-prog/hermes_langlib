@@ -3,11 +3,11 @@ from enum import Enum
 
 
 class FileTypes(Enum):
-	INI = 'ini'
-	TOML = 'toml'
-	XML = 'xml'
-	YAML = 'yaml'
-	JSON = 'json'
+	INI = "ini"
+	TOML = "toml"
+	XML = "xml"
+	YAML = "yaml"
+	JSON = "json"
 
 
 @dataclass

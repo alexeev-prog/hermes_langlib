@@ -14,6 +14,8 @@ Fast, optimized and high-performance, high-load oriented library for i18n and l1
     ·
     <a href="#usage-examples">Basic Usage</a>
     ·
+    <a href="#-key-features">Key Features</a>
+    ·
     <a href="https://github.com/alexeev-prog/hermes_langlib/blob/main/LICENSE">License</a>
   </p>
 </div>
@@ -40,6 +42,15 @@ Hermes LangLib - a fast and productive python library for translating, localizin
  + [pycolor-palette](https://github.com/alexeev-prog/pycolor-palette) - display beautiful log messages, logging, debugging.
  + [shegang](https://github.com/alexeev-prog/shegang) - powerful command interpreter (shell) for linux written in C
  + [pyEchoNext](https://github.com/alexeev-prog/pyEchoNext) - EchoNext is a lightweight, fast and scalable web framework for Python.
+
+## 📚 Key Features
+
+- Intuitive API: Pythonic, object-oriented interface for interacting with routes and views.
+- Comprehensive Documentation: Detailed usage examples and API reference to help you get started.
+- Modular Design: Clean, maintainable codebase that follows best software engineering practices.
+- Extensive Test Coverage: Robust test suite to ensure the library's reliability and stability.
+- Various types of localization storage: you can store localization in JSON, TOML, YAML and INI formats or in RAM.
+- Automatic translation: you can enable automatic translation of your localization if the required word is not found.
 
 ## 💬 Support
 If you encounter any issues or have questions about hermes_langlib, please:

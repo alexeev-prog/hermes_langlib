@@ -1,9 +1,10 @@
 from abc import ABC, abstractmethod
+from configparser import ConfigParser
 from typing import Any, Dict, Union
+
+import orjson as json
 import toml
 import yaml
-import orjson as json
-from configparser import ConfigParser
 
 from hermes_langlib.storage.base import FileTypes
 
@@ -11,18 +12,18 @@ from hermes_langlib.storage.base import FileTypes
 def get_file_extension(filename: str) -> Union[None, FileTypes]:
 	filename = str(filename).lower().strip()
 
-	ext = filename.split('.')[-1]
+	ext = filename.split(".")[-1]
 
 	match ext:
-		case 'json':
+		case "json":
 			return FileTypes.JSON
-		case 'xml':
+		case "xml":
 			return FileTypes.XML
-		case 'toml':
+		case "toml":
 			return FileTypes.TOML
-		case 'yaml':
+		case "yaml":
 			return FileTypes.YAML
-		case 'ini':
+		case "ini":
 			return FileTypes.INI
 		case _:
 			return None
@@ -81,8 +82,8 @@ class JSONConfig(AbstractConfig):
 		:returns:	The loaded configuration.
 		:rtype:		Dict[Any, Any]
 		"""
-		with open(self.config_path) as f:
-			self.config = json.load(f)
+		with open(self.config_path, "r") as f:
+			self.config = json.loads(f.read())
 
 		return self.config
 
@@ -186,7 +187,7 @@ class ConfigFactory(AbstractConfigFactory):
 		self.ext = get_file_extension(config_path)
 		self.config_path = config_path
 
-	def create_config(self) -> Dict[Any, Any]:
+	def create_config(self) -> Union[JSONConfig, TOMLConfig, YAMLConfig, INIConfig]:
 		"""
 		Creates a configuration.
 
@@ -229,4 +230,4 @@ class ConfigurationProvider:
 		:rtype:		AbstractConfig
 		"""
 
-		return self.config
+		return self.config.get_loaded_config()
