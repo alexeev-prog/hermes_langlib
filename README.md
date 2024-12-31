@@ -1,4 +1,4 @@
-# Babel i18n & l10n
+# Hermes-LangLib
 <a id="readme-top"></a> 
 
 Fast, optimized and high-performance, high-load oriented library for i18n and l10n
@@ -29,7 +29,7 @@ Fast, optimized and high-performance, high-load oriented library for i18n and l1
     <img src="https://img.shields.io/pypi/wheel/babel_langlib?style=for-the-badge">
 </p>
 
-Babel LangLib - a fast and productive python library for translating, localizing and internationalizing your applications. The library is aimed at high speed and stability; it can be used in highly loaded projects.
+Hermes LangLib - a fast and productive python library for translating, localizing and internationalizing your applications. The library is aimed at high speed and stability; it can be used in highly loaded projects.
 
 ## Check Other My Projects
 
@@ -62,7 +62,7 @@ Distributed under the GNU LGPL 2.1 License. See [LICENSE](https://github.com/ale
 
 ---
 
-EchoNext is a lightweight, fast and scalable web framework for Python
+HermesLangLib is a lightweight, fast and scalable web framework for Python
 Copyright (C) 2024  Alexeev Bronislav (C) 2024
 
 This library is free software; you can redistribute it and/or

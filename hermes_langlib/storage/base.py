@@ -12,6 +12,8 @@ class FileTypes(Enum):
 
 @dataclass
 class Config:
-	locale_file: str
+	config_file: str
+	locale_directory: str
+	default_locale_file: str
 	default_language: str
 	use_translator: bool = True

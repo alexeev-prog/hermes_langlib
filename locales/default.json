@@ -1,0 +1,22 @@
+{
+	"locales": {
+		"RU": ["RU_RU"],
+		"EN": ["EN_EN", "EN_US"]
+	},
+	"RU": {
+		"RU_RU": {
+			"title": "Библиотека для интернационализации",
+			"description": "Библиотека, которая позволит переводить ваши приложения",
+		}
+	},
+	"EN": {
+		"EN_EN": {
+			"title": "Library for internationalization",
+			"description": "A library that will allow you to translate your applications"
+		},
+		"EN_US": {
+			"title": "Library for internationalization",
+			"description": "A library that will allow you to translate your applications"
+		}
+	}
+}

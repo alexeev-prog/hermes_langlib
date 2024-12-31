@@ -1,0 +1,4 @@
+locale_directory=locales
+default_locale_file=default.json
+default_language=RU_RU
+use_translator=true
