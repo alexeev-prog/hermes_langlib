@@ -14,17 +14,17 @@ Fast, optimized and high-performance, high-load oriented library for i18n and l1
     ·
     <a href="#usage-examples">Basic Usage</a>
     ·
-    <a href="https://github.com/alexeev-prog/babel_i18n_lib/blob/main/LICENSE">License</a>
+    <a href="https://github.com/alexeev-prog/hermes_langlib/blob/main/LICENSE">License</a>
   </p>
 </div>
 <br>
 <p align="center">
-    <img src="https://img.shields.io/github/languages/top/alexeev-prog/babel_i18n_lib?style=for-the-badge">
-    <img src="https://img.shields.io/github/languages/count/alexeev-prog/babel_i18n_lib?style=for-the-badge">
-    <img src="https://img.shields.io/github/license/alexeev-prog/babel_i18n_lib?style=for-the-badge">
-    <img src="https://img.shields.io/github/stars/alexeev-prog/babel_i18n_lib?style=for-the-badge">
-    <img src="https://img.shields.io/github/issues/alexeev-prog/babel_i18n_lib?style=for-the-badge">
-    <img src="https://img.shields.io/github/last-commit/alexeev-prog/babel_i18n_lib?style=for-the-badge">
+    <img src="https://img.shields.io/github/languages/top/alexeev-prog/hermes_langlib?style=for-the-badge">
+    <img src="https://img.shields.io/github/languages/count/alexeev-prog/hermes_langlib?style=for-the-badge">
+    <img src="https://img.shields.io/github/license/alexeev-prog/hermes_langlib?style=for-the-badge">
+    <img src="https://img.shields.io/github/stars/alexeev-prog/hermes_langlib?style=for-the-badge">
+    <img src="https://img.shields.io/github/issues/alexeev-prog/hermes_langlib?style=for-the-badge">
+    <img src="https://img.shields.io/github/last-commit/alexeev-prog/hermes_langlib?style=for-the-badge">
     <img src="https://img.shields.io/pypi/l/babel_langlib?style=for-the-badge">
     <img src="https://img.shields.io/pypi/wheel/babel_langlib?style=for-the-badge">
 </p>
@@ -42,21 +42,21 @@ Hermes LangLib - a fast and productive python library for translating, localizin
  + [pyEchoNext](https://github.com/alexeev-prog/pyEchoNext) - EchoNext is a lightweight, fast and scalable web framework for Python.
 
 ## 💬 Support
-If you encounter any issues or have questions about pyEchoNext, please:
+If you encounter any issues or have questions about hermes_langlib, please:
 
-- Check the [documentation](https://alexeev-prog.github.io/pyEchoNext) for answers
-- Open an [issue on GitHub](https://github.com/alexeev-prog/pyEchoNext/issues/new)
+- Check the [documentation](https://alexeev-prog.github.io/hermes_langlib) for answers
+- Open an [issue on GitHub](https://github.com/alexeev-prog/hermes_langlib/issues/new)
 - Reach out to the project maintainers via the [mailing list](mailto:alexeev.dev@mail.ru)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🤝 Contributing
-We welcome contributions from the community! If you'd like to help improve pyEchoNext, please check out the [contributing guidelines](https://github.com/alexeev-prog/pyEchoNext/blob/main/CONTRIBUTING.md) to get started.
+We welcome contributions from the community! If you'd like to help improve hermes_langlib, please check out the [contributing guidelines](https://github.com/alexeev-prog/hermes_langlib/blob/main/CONTRIBUTING.md) to get started.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## License
-Distributed under the GNU LGPL 2.1 License. See [LICENSE](https://github.com/alexeev-prog/babel_i18n_lib/blob/main/LICENSE) for more information.
+Distributed under the GNU LGPL 2.1 License. See [LICENSE](https://github.com/alexeev-prog/hermes_langlib/blob/main/LICENSE) for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
