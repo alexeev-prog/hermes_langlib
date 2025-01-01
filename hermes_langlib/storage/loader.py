@@ -1,39 +1,20 @@
-import os
 from pathlib import Path
-from typing import Any, Dict, Optional
 
 from hermes_langlib.storage.base import Config
 from hermes_langlib.storage.config_provider import ConfigurationProvider
 from hermes_langlib.translators.providers import TranslatorProviders
 
 
-def load_translations(
-	locale_directory: str, locale_file: str, language: Optional[str] = None
-) -> Dict[Any, Any]:
-	"""
-	Loads translations.
-
-	:param		locale_directory:  The locale directory
-	:type		locale_directory:  str
-	:param		locale_file:	   The locale file
-	:type		locale_file:	   str
-	:param		language:		   The language
-	:type		language:		   Optional[str]
-
-	:returns:	locale data
-	:rtype:		Dict[Any, Any]
-	"""
-	locale_provider = ConfigurationProvider(os.path.join(locale_directory, locale_file))
-
-	locale_data = locale_provider()
-
-	if language is None:
-		return locale_data
-
-	return locale_data.get(language, locale_data)
-
-
 def get_translation_provider(provider_name: str) -> TranslatorProviders:
+	"""
+	Gets the translation provider.
+
+	:param		provider_name:	The provider name
+	:type		provider_name:	str
+
+	:returns:	The translation provider.
+	:rtype:		TranslatorProviders
+	"""
 	if provider_name is None:
 		return None
 

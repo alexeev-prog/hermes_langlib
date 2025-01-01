@@ -1,27 +1,57 @@
 from enum import Enum
-from deep_translator import (GoogleTranslator,
-                             ChatGptTranslator,
-                             MicrosoftTranslator,
-                             PonsTranslator,
-                             LingueeTranslator,
-                             MyMemoryTranslator,
-                             YandexTranslator,
-                             PapagoTranslator,
-                             DeeplTranslator,
-                             QcriTranslator)
+
+from deep_translator import (
+	ChatGptTranslator,
+	DeeplTranslator,
+	GoogleTranslator,
+	LingueeTranslator,
+	MicrosoftTranslator,
+	MyMemoryTranslator,
+	PapagoTranslator,
+	PonsTranslator,
+	QcriTranslator,
+	YandexTranslator,
+)
 
 
 class TranslatorProvider:
-	def __init__(self, translator):
-		self.translator = translator
+	"""
+	This class describes a translator provider.
+	"""
 
-	def __call__(self, source: str, target: str, phrase: str):
-		self.translator = self.translator(source=source, target=target)
+	def __init__(self, translator: object):
+		"""
+		Constructs a new instance.
 
-		return self.translator.translate(phrase)
+		:param		translator:	 The translator
+		:type		translator:	 object
+		"""
+		self.translator: object = translator
+
+	def __call__(self, source: str, target: str, phrase: str) -> str:
+		"""
+		translate phrase
+
+		:param		source:	 The source
+		:type		source:	 str
+		:param		target:	 The target
+		:type		target:	 str
+		:param		phrase:	 The phrase
+		:type		phrase:	 str
+
+		:returns:	translated phrase
+		:rtype:		str
+		"""
+		translator = self.translator(source=source, target=target)
+
+		return translator.translate(phrase)
 
 
 class TranslatorProviders(Enum):
+	"""
+	This class describes translator providers.
+	"""
+
 	google = TranslatorProvider(GoogleTranslator)
 	chatgpt = TranslatorProvider(ChatGptTranslator)
 	microsoft = TranslatorProvider(MicrosoftTranslator)

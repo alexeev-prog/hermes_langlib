@@ -5,27 +5,68 @@ from hermes_langlib.storage.config_provider import ConfigurationProvider
 
 
 class BaseStorage(ABC):
+	"""
+	This class describes a base storage.
+	"""
+
 	@abstractmethod
 	def _load_locales(self) -> Dict[str, str]:
+		"""
+		Loads locales.
+
+		:returns:	locales
+		:rtype:		Dict[str, str]
+		"""
 		raise NotImplementedError
 
 	@abstractmethod
 	def get_supported_locales(self) -> List[str]:
+		"""
+		Gets the supported locales.
+
+		:returns:	The supported locales.
+		:rtype:		List[str]
+		"""
 		raise NotImplementedError
 
 
 class LocaleStorage(BaseStorage):
+	"""
+	This class describes a locale storage.
+	"""
+
 	def __init__(self, filename: str):
-		self.filename = filename
-		self.provider = ConfigurationProvider(self.filename)
-		self.locales = self._load_locales()
+		"""
+		Constructs a new instance.
+
+		:param		filename:  The filename
+		:type		filename:  str
+		"""
+		self.filename: str = filename
+		self.provider: ConfigurationProvider = ConfigurationProvider(self.filename)
+		self.locales: Dict[str, str] = self._load_locales()
 
 	def _load_locales(self) -> Dict[str, str]:
+		"""
+		Loads locales.
+
+		:returns:	locales
+		:rtype:		Dict[str, str]
+		"""
 		return self.provider()
 
 	def get_supported_locales(
 		self, dictionary_for_default: Optional[bool] = False
 	) -> List[str]:
+		"""
+		Gets the supported locales.
+
+		:param		dictionary_for_default:	 The dictionary for default
+		:type		dictionary_for_default:	 Optional[bool]
+
+		:returns:	The supported locales.
+		:rtype:		List[str]
+		"""
 		locales = self.locales.get("locales", None)
 
 		if locales is None:

@@ -55,5 +55,7 @@ def check_for_update():
 			f"[dim]Version updates information not available. Your version: {__version__}[/dim]"
 		)
 
+	return True
+
 
 check_for_update()

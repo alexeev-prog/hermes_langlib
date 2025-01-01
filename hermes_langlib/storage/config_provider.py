@@ -10,6 +10,15 @@ from hermes_langlib.storage.base import FileTypes
 
 
 def get_file_extension(filename: str) -> Union[None, FileTypes]:
+	"""
+	Gets the file extension.
+
+	:param		filename:  The filename
+	:type		filename:  str
+
+	:returns:	The file extension.
+	:rtype:		Union[None, FileTypes]
+	"""
 	filename = str(filename).lower().strip()
 
 	ext = filename.split(".")[-1]
