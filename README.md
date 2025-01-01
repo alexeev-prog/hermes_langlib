@@ -29,6 +29,7 @@ Fast, optimized and high-performance, high-load oriented library for i18n and l1
     <img src="https://img.shields.io/github/last-commit/alexeev-prog/hermes_langlib?style=for-the-badge">
     <img src="https://img.shields.io/pypi/l/babel_langlib?style=for-the-badge">
     <img src="https://img.shields.io/pypi/wheel/babel_langlib?style=for-the-badge">
+    <img src="https://img.shields.io/badge/coverage-61%25-61%25?style=for-the-badge" alt="">
 </p>
 
 Hermes LangLib - a fast and productive python library for translating, localizing and internationalizing your applications. The library is aimed at high speed and stability; it can be used in highly loaded projects.

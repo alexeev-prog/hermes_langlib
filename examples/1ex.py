@@ -1,10 +1,15 @@
-from hermes_langlib.storage.locale_store import LocaleStorage
+from hermes_langlib.locales import LocaleManager
+from hermes_langlib.storage.loader import load_config
 
-ls2 = LocaleStorage("locales/default.json")
-print(ls2.get_supported_locales())
+config = load_config('example.toml')
 
-ls3 = LocaleStorage("locales/default.json")
-print(ls3.get_supported_locales(dictionary_for_default=True))
-
-ls1 = LocaleStorage("locales/default2.json")
-print(ls1.get_supported_locales())
+locale_manager = LocaleManager(config, locales=['default.json'])
+print(locale_manager.get_string('title - {version}', 'default', 'RU_RU', version="0.1.0"))
+print(locale_manager.get_string('title - {version}', 'default', 'RU', version="0.1.0"))
+print(locale_manager.get_string('mails_message.', 'default', 'RU_RU', count=0))
+print(locale_manager.get_string('mails_message', 'default', 'RU_RU', count=1))
+print(locale_manager.get_string('mails_message', 'default', 'RU_RU', count=11))
+print(locale_manager.get_string('mails_message', 'default', 'RU_RU', count=2))
+print(locale_manager.get_string('mails_message', 'default', 'RU_RU', count=22))
+print(locale_manager.get_string('mails_message', 'default', 'RU_RU', count=46))
+print(locale_manager.get_string('mails_message', 'default', 'RU_RU', count=100000001))

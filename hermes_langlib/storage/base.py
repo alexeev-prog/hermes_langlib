@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from enum import Enum
+from hermes_langlib.translators.providers import TranslatorProviders
 
 
 class FileTypes(Enum):
@@ -16,4 +17,4 @@ class Config:
 	locale_directory: str
 	default_locale_file: str
 	default_language: str
-	use_translator: bool = True
+	translator: TranslatorProviders = None

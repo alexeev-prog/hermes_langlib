@@ -6,7 +6,7 @@ from hermes_langlib.storage.config_provider import ConfigurationProvider
 
 class BaseStorage(ABC):
 	@abstractmethod
-	def _load_config(self) -> Dict[str, str]:
+	def _load_locales(self) -> Dict[str, str]:
 		raise NotImplementedError
 
 	@abstractmethod
@@ -18,20 +18,20 @@ class LocaleStorage(BaseStorage):
 	def __init__(self, filename: str):
 		self.filename = filename
 		self.provider = ConfigurationProvider(self.filename)
-		self.config = self._load_config()
+		self.locales = self._load_locales()
 
-	def _load_config(self) -> Dict[str, str]:
+	def _load_locales(self) -> Dict[str, str]:
 		return self.provider()
 
 	def get_supported_locales(
 		self, dictionary_for_default: Optional[bool] = False
 	) -> List[str]:
-		locales = self.config.get("locales", None)
+		locales = self.locales.get("locales", None)
 
 		if locales is None:
 			locales = []
 
-			for locale_name, locale in self.config.items():
+			for locale_name, locale in self.locales.items():
 				locales.append(locale_name)
 				if isinstance(locale, dict):
 					for sublocale_name, sublocale in locale.items():
