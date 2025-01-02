@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hermes_langlib"
-version = "0.1.0"
+version = "0.1.1"
 description = "Fast, optimized and high-performance, high-load oriented library for i18n and l10n"
 authors = ["alexeev-prog <alexeev.dev@mail.ru>"]
 license = "GNU LGPL 2.1"

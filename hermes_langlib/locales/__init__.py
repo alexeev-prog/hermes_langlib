@@ -63,21 +63,21 @@ class Locale:
 		:rtype:		Dict[str, str]
 		"""
 		for key, value in self.storage.locales.items():
-			lang_name = value.get(language)
+			lang_items = value.get(language)
 
-			if isinstance(lang_name, list):
-				language = lang_name[0]
+			if isinstance(lang_items, list):
+				language = lang_items[0]
 				continue
 
-			if lang_name is not None:
-				return lang_name
+			if lang_items is not None:
+				return lang_items
 
 			if key == "locales":
 				continue
 
 			if isinstance(value, dict):
-				if lang_name is not None:
-					return lang_name
+				if lang_items is not None:
+					return lang_items
 
 
 class LocaleManager:
@@ -151,12 +151,22 @@ class LocaleManager:
 		:returns:	language locales
 		:rtype:		Dict[str, str]
 		"""
-		locale = self.locales.get(locale_name, None)
 
-		if locale is None:
-			return None
+		if locale_name is None:
+			language_locales = {}
 
-		language_locales = locale.get_items(language)
+			for _, locale in self.locales.items():
+				items = locale.get_items(language)
+
+				if items is not None:
+					language_locales.update(items)
+		else:
+			locale = self.locales.get(locale_name, None)
+
+			if locale is None:
+				return None
+
+			language_locales = locale.get_items(language)
 
 		return language_locales
 
@@ -226,7 +236,11 @@ class LocaleManager:
 		)
 
 	def get(
-		self, key: str, locale_name: str, language: Optional[str] = None, **kwargs
+		self,
+		key: str,
+		locale_name: Optional[str] = None,
+		language: Optional[str] = None,
+		**kwargs,
 	) -> str:
 		"""
 		get value by key from locales
@@ -234,7 +248,7 @@ class LocaleManager:
 		:param		key:		  The key
 		:type		key:		  str
 		:param		locale_name:  The locale name
-		:type		locale_name:  str
+		:type		locale_name:  Optional[str]
 		:param		language:	  The language
 		:type		language:	  Optional[str]
 		:param		kwargs:		  The keywords arguments
