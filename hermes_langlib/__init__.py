@@ -27,35 +27,35 @@ install(show_locals=True)
 
 
 def check_for_update():
-	"""
-	Check for update in pypi
-	"""
-	try:
-		response = requests.get("https://pypi.org/pypi/hermes_langlib/json").json()
+    """
+    Check for update in pypi
+    """
+    try:
+        response = requests.get("https://pypi.org/pypi/hermes_langlib/json").json()
 
-		latest_version = response["info"]["version"]
+        latest_version = response["info"]["version"]
 
-		latest_digits = [int(n) for n in latest_version.split(".")]
-		current_digits = [int(n) for n in __version__.split(".")]
+        latest_digits = [int(n) for n in latest_version.split(".")]
+        current_digits = [int(n) for n in __version__.split(".")]
 
-		if sum(latest_digits) > sum(current_digits):
-			message = (
-				f"New version of library hermes_langlib available: {latest_version}"
-			)
+        if sum(latest_digits) > sum(current_digits):
+            message = (
+                f"New version of library hermes_langlib available: {latest_version}"
+            )
 
-			print(
-				f"[red]{'#' * (len(message) + 4)}\n#[/red][bold yellow] {message} [/bold yellow][red]#\n{'#' * (len(message) + 4)}[/red]\n"
-			)
-		elif sum(latest_digits) < sum(current_digits):
-			print(
-				f"[yellow]You use [bold]UNSTABLE[/bold] branch of hermes_langlib. Stable version: {latest_version}, your version: {__version__}[/yellow]\n"
-			)
-	except (requests.RequestException, KeyError):
-		print(
-			f"[dim]Version updates information not available. Your version: {__version__}[/dim]"
-		)
+            print(
+                f"[red]{'#' * (len(message) + 4)}\n#[/red][bold yellow] {message} [/bold yellow][red]#\n{'#' * (len(message) + 4)}[/red]\n"
+            )
+        elif sum(latest_digits) < sum(current_digits):
+            print(
+                f"[yellow]You use [bold]UNSTABLE[/bold] branch of hermes_langlib. Stable version: {latest_version}, your version: {__version__}[/yellow]\n"
+            )
+    except (requests.RequestException, KeyError):
+        print(
+            f"[dim]Version updates information not available. Your version: {__version__}[/dim]"
+        )
 
-	return True
+    return True
 
 
 check_for_update()
