@@ -62,7 +62,7 @@ class InMemoryCache(CacheBase):
     when the maximum size is reached or when the time-to-live (TTL) has expired.
     """
 
-    def __init__(self, max_size: int = 1000, ttl: int = 60) -> None:
+    def __init__(self, max_size: int = 1000, ttl: int = 120) -> None:
         """
         Constructs a new instance.
 

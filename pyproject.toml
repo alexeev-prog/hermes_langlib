@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hermes_langlib"
-version = "0.1.2"
+version = "0.2.0"
 description = "Fast, optimized and high-performance, high-load oriented library for i18n and l10n"
 authors = ["alexeev-prog <alexeev.dev@mail.ru>"]
 license = "GNU LGPL 2.1"
@@ -14,7 +14,8 @@ pyyaml = "^6.0.2"
 configparser = "^7.1.0"
 requests = "^2.32.3"
 deep-translator = "^1.11.4"
-rich = "^13.9.4"
+rich = "^14.0.0"
+isort = "^6.0.1"
 
 
 [tool.poetry.group.dev.dependencies]
