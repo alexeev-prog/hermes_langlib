@@ -5,9 +5,7 @@ from hermes_langlib.translators.providers import TranslatorProviders
 
 
 class FileTypes(Enum):
-    """
-    This class describes file types.
-    """
+    """This class describes file types."""
 
     INI = "ini"
     TOML = "toml"
@@ -18,9 +16,7 @@ class FileTypes(Enum):
 
 @dataclass
 class Config:
-    """
-    This class describes a configuration.
-    """
+    """This class describes a configuration."""
 
     config_file: str
     locale_directory: str

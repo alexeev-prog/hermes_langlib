@@ -1,11 +1,11 @@
 import time
 from functools import wraps
-from typing import Any, Callable, Type
+from typing import Any, Callable
 
 from hermes_langlib.utils._patterns import Singleton
 
 
-class CacheBase(object):
+class CacheBase:
     """
     An abstract base class for implementing a cache.
 
@@ -47,9 +47,7 @@ class CacheBase(object):
         raise NotImplementedError
 
     def clear(self) -> None:
-        """
-        Clear all entries from the cache.
-        """
+        """Clear all entries from the cache."""
         raise NotImplementedError
 
 
@@ -89,14 +87,13 @@ class InMemoryCache(CacheBase):
         if key in self.cache:
             if time.time() - self.timestamps[key] <= self.ttl:
                 return self.cache[key]
-            else:
-                del self.cache[key]
-                del self.timestamps[key]
+            del self.cache[key]
+            del self.timestamps[key]
         return None
 
     def set(self, key: str, value: Any, timestamp: float) -> None:
         """
-        Set new cache element
+        Set new cache element.
 
         :param		key:		The new value
         :type		key:		str
@@ -113,14 +110,12 @@ class InMemoryCache(CacheBase):
         self.timestamps[key] = timestamp
 
     def clear(self) -> None:
-        """
-        Clears the cache
-        """
+        """Clears the cache."""
         self.cache.clear()
         self.timestamps.clear()
 
 
-class CacheFactory(object):
+class CacheFactory:
     """
     A factory for creating different types of caches.
 
@@ -129,7 +124,7 @@ class CacheFactory(object):
     """
 
     @staticmethod
-    def create_cache(cache_type: Type[CacheBase], *args, **kwargs) -> CacheBase:
+    def create_cache(cache_type: type[CacheBase], *args, **kwargs) -> CacheBase:
         """
         Create a new cache instance of the specified type.
 
@@ -162,7 +157,7 @@ class SingletonCache(CacheBase, metaclass=Singleton):
     to create the underlying cache implementation.
     """
 
-    def __init__(self, cache_type: Type[CacheBase], *args, **kwargs) -> None:
+    def __init__(self, cache_type: type[CacheBase], *args, **kwargs) -> None:
         """
         Constructs a new instance.
 
@@ -189,7 +184,7 @@ class SingletonCache(CacheBase, metaclass=Singleton):
 
     def set(self, key: str, value: Any, timestamp: float) -> None:
         """
-        Set new cache element
+        Set new cache element.
 
         :param		key:		The new value
         :type		key:		str
@@ -201,9 +196,7 @@ class SingletonCache(CacheBase, metaclass=Singleton):
         self.cache.set(key, value, timestamp)
 
     def clear(self) -> None:
-        """
-        Clear cache
-        """
+        """Clear cache."""
         self.cache.clear()
 
 
@@ -244,10 +237,9 @@ def cached(
             cached_value = cache.get(key)
             if cached_value is not None:
                 return cached_value
-            else:
-                result = func(*args, **kwargs)
-                cache.set(key, result, time.time())
-                return result
+            result = func(*args, **kwargs)
+            cache.set(key, result, time.time())
+            return result
 
         return wrapper
 

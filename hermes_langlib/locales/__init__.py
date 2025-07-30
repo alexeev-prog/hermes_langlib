@@ -1,6 +1,6 @@
 import os
 import re
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Optional, Union
 
 from hermes_langlib.formatter import PluralFormatter
 from hermes_langlib.storage.base import Config
@@ -8,9 +8,7 @@ from hermes_langlib.storage.locale_store import LocaleStorage
 
 
 class Locale:
-    """
-    This class describes a locale.
-    """
+    """This class describes a locale."""
 
     def __init__(
         self, locale_directory: str, locale_file: str, short_name: Optional[str] = None
@@ -33,12 +31,13 @@ class Locale:
             self.short_name = "".join(str(self.locale_file).split(".")[:-1])
 
         self.storage: LocaleStorage = LocaleStorage(
-            os.path.join(self.locale_directory, self.locale_file)
+            os.path.join(self.locale_directory, self.locale_file)  # noqa: PTH118
         )
 
     def get_supported_locales(
-        self, dictionary_for_default: Optional[bool] = False
-    ) -> List[str]:
+        self,
+        dictionary_for_default: Optional[bool] = False,  # noqa: FBT001, FBT002
+    ) -> list[str]:
         """
         Gets the supported locales.
 
@@ -52,7 +51,7 @@ class Locale:
             dictionary_for_default=dictionary_for_default
         )
 
-    def get_items(self, language: str) -> Dict[str, str]:
+    def get_items(self, language: str) -> dict[str, str]:
         """
         Gets the items.
 
@@ -75,17 +74,15 @@ class Locale:
             if key == "locales":
                 continue
 
-            if isinstance(value, dict):
-                if lang_items is not None:
-                    return lang_items
+            if isinstance(value, dict) and lang_items is not None:
+                return lang_items
+        return None
 
 
 class LocaleManager:
-    """
-    This class describes a locale manager.
-    """
+    """This class describes a locale manager."""
 
-    def __init__(self, config: Config, locales: Optional[List[str]] = []):
+    def __init__(self, config: Config, locales: Optional[list[str]] = None):
         """
         Constructs a new instance.
 
@@ -94,13 +91,15 @@ class LocaleManager:
         :param		locales:  The locales
         :type		locales:  Array
         """
+        if locales is None:
+            locales = []
         self.config: Config = config
-        self.locales: Dict[str, Locale] = self._prepare_locales(locales)
+        self.locales: dict[str, Locale] = self._prepare_locales(locales)
         self._validate_fields()
 
-    def _prepare_locales(self, locales: List[str]) -> Dict[str, Locale]:
+    def _prepare_locales(self, locales: list[str]) -> dict[str, Locale]:
         """
-        Prepare and create locales dict
+        Prepare and create locales dict.
 
         :param		locales:  The locales
         :type		locales:  List[str]
@@ -124,14 +123,14 @@ class LocaleManager:
 
     def _validate_fields(self):
         """
-        Validate fields for locales
+        Validate fields for locales.
 
         :raises		ValueError:	 Default language dont found
         """
         default_language = self.config.default_language
         supported_locales = []
 
-        for _, locale in self.locales.items():
+        for locale in self.locales.values():
             supported_locales += locale.get_supported_locales(
                 dictionary_for_default=False
             )
@@ -139,7 +138,7 @@ class LocaleManager:
         if default_language not in supported_locales:
             raise ValueError(f"Default language don't found in: {supported_locales}")
 
-    def _find_language_locales(self, locale_name: str, language: str) -> Dict[str, str]:
+    def _find_language_locales(self, locale_name: str, language: str) -> dict[str, str]:
         """
         Finds language locales.
 
@@ -151,11 +150,10 @@ class LocaleManager:
         :returns:	language locales
         :rtype:		Dict[str, str]
         """
-
         if locale_name is None:
             language_locales = {}
 
-            for _, locale in self.locales.items():
+            for locale in self.locales.values():
                 items = locale.get_items(language)
 
                 if items is not None:
@@ -173,11 +171,11 @@ class LocaleManager:
     def _prepare_key(
         self,
         word: str,
-        language_locales: Union[Dict[str, str], Dict[str, Dict[str, Any]]],
+        language_locales: Union[dict[str, str], dict[str, dict[str, Any]]],
         **kwargs,
     ) -> str:
         """
-        Prepare key before sending
+        Prepare key before sending.
 
         :param		word:			   The word
         :type		word:			   str
@@ -190,7 +188,7 @@ class LocaleManager:
         :rtype:		str
         """
         pattern = re.compile(
-            r"\b(" + "|".join(re.escape(k) for k in language_locales.keys()) + r")\b"
+            r"\b(" + "|".join(re.escape(k) for k in language_locales) + r")\b"
         )
 
         def _replace(match):
@@ -214,7 +212,7 @@ class LocaleManager:
         **kwargs,
     ) -> str:
         """
-        Translate
+        Translate.
 
         :param		key:			The key
         :type		key:			str
@@ -243,7 +241,7 @@ class LocaleManager:
         **kwargs,
     ) -> str:
         """
-        get value by key from locales
+        Get value by key from locales.
 
         :param		key:		  The key
         :type		key:		  str
@@ -265,6 +263,4 @@ class LocaleManager:
         if language_locales is None:
             return key
 
-        result = self._prepare_key(key, language_locales, **kwargs)
-
-        return result
+        return self._prepare_key(key, language_locales, **kwargs)

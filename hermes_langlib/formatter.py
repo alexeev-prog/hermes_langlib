@@ -1,17 +1,15 @@
 import re
 from abc import ABC, abstractmethod
-from typing import Any, Dict, Union
+from typing import Any, Union
 
 
 class BaseFormatter(ABC):
-    """
-    This class describes a base formatter.
-    """
+    """This class describes a base formatter."""
 
     @abstractmethod
     def format_string(self) -> Any:
         """
-        Format string
+        Format string.
 
         :returns:	formatted string
         :rtype:		Any
@@ -22,10 +20,10 @@ class BaseFormatter(ABC):
 class PluralFormatter(BaseFormatter):
     @staticmethod
     def format_string(
-        locales: Union[Dict[str, str], Dict[str, Dict[str, Any]]], **kwargs
+        locales: Union[dict[str, str], dict[str, dict[str, Any]]], **kwargs
     ) -> Union[str, None]:
         """
-        Format string
+        Format string.
 
         :param		locales:	 The locales
         :type		locales:	 nion[Dict[str, str], Dict[str, Dict[str, Any]]]
@@ -49,10 +47,10 @@ class PluralFormatter(BaseFormatter):
                 for plural_pattern, plural_locale in locales.items():
                     if plural_pattern == "plural":
                         continue
-                    elif plural_pattern == "other":
-                        return plural_locale.format(**kwargs)
-                    elif re.match(plural_pattern, plural_param) or re.search(
-                        plural_pattern, plural_param
+                    if (
+                        plural_pattern == "other"
+                        or re.match(plural_pattern, plural_param)
+                        or re.search(plural_pattern, plural_param)
                     ):
                         return plural_locale.format(**kwargs)
 

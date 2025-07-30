@@ -5,7 +5,7 @@ from hermes_langlib.storage.config_provider import ConfigurationProvider
 from hermes_langlib.translators.providers import TranslatorProviders
 
 
-def get_translation_provider(provider_name: str) -> TranslatorProviders:
+def get_translation_provider(provider_name: str) -> TranslatorProviders:  # noqa: C901
     """
     Gets the translation provider.
 
@@ -64,12 +64,10 @@ def load_config(filename: str) -> Config:
 
     config_data = config_provider()
 
-    config = Config(
+    return Config(
         config_file=filename,
         locale_directory=config_data.get("locale_directory", None),
         default_locale_file=config_data.get("default_locale_file", None),
         default_language=config_data.get("default_language", None),
         translator=get_translation_provider(config_data.get("translator", None)),
     )
-
-    return config

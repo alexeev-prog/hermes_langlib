@@ -15,9 +15,7 @@ from deep_translator import (
 
 
 class TranslatorProvider:
-    """
-    This class describes a translator provider.
-    """
+    """This class describes a translator provider."""
 
     def __init__(self, translator: object):
         """
@@ -30,7 +28,7 @@ class TranslatorProvider:
 
     def __call__(self, source: str, target: str, phrase: str) -> str:
         """
-        translate phrase
+        Translate phrase.
 
         :param		source:	 The source
         :type		source:	 str
@@ -48,9 +46,7 @@ class TranslatorProvider:
 
 
 class TranslatorProviders(Enum):
-    """
-    This class describes translator providers.
-    """
+    """This class describes translator providers."""
 
     google = TranslatorProvider(GoogleTranslator)
     chatgpt = TranslatorProvider(ChatGptTranslator)

@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from configparser import ConfigParser
-from typing import Any, Dict, Union
+from typing import Any, Union
 
 import orjson as json
 import toml
@@ -39,12 +39,10 @@ def get_file_extension(filename: str) -> Union[None, FileTypes]:
 
 
 class AbstractConfig(ABC):
-    """
-    This class describes an abstract configuration.
-    """
+    """This class describes an abstract configuration."""
 
     @abstractmethod
-    def get_loaded_config(self) -> Dict[Any, Any]:
+    def get_loaded_config(self) -> dict[Any, Any]:
         """
         Gets the loaded configuration.
 
@@ -55,9 +53,7 @@ class AbstractConfig(ABC):
 
 
 class AbstractConfigFactory(ABC):
-    """
-    Front-end to create abstract configuration objects.
-    """
+    """Front-end to create abstract configuration objects."""
 
     def create_config(self) -> AbstractConfig:
         """
@@ -70,9 +66,7 @@ class AbstractConfigFactory(ABC):
 
 
 class JSONConfig(AbstractConfig):
-    """
-    This class describes a json configuration.
-    """
+    """This class describes a json configuration."""
 
     def __init__(self, config_path: str):
         """
@@ -82,25 +76,23 @@ class JSONConfig(AbstractConfig):
         :type		config_path:  str
         """
         self.config_path = config_path
-        self.config: Dict[Any, Any] = {}
+        self.config: dict[Any, Any] = {}
 
-    def get_loaded_config(self) -> Dict[Any, Any]:
+    def get_loaded_config(self) -> dict[Any, Any]:
         """
         Gets the loaded configuration.
 
         :returns:	The loaded configuration.
         :rtype:		Dict[Any, Any]
         """
-        with open(self.config_path, "r", encoding="utf-8") as f:
+        with open(self.config_path, encoding="utf-8") as f:
             self.config = json.loads(f.read())
 
         return self.config
 
 
 class TOMLConfig(AbstractConfig):
-    """
-    This class describes a toml configuration.
-    """
+    """This class describes a toml configuration."""
 
     def __init__(self, config_path: str):
         """
@@ -110,9 +102,9 @@ class TOMLConfig(AbstractConfig):
         :type		config_path:  str
         """
         self.config_path = config_path
-        self.config: Dict[Any, Any] = {}
+        self.config: dict[Any, Any] = {}
 
-    def get_loaded_config(self) -> Dict[Any, Any]:
+    def get_loaded_config(self) -> dict[Any, Any]:
         """
         Gets the loaded configuration.
 
@@ -126,9 +118,7 @@ class TOMLConfig(AbstractConfig):
 
 
 class INIConfig(AbstractConfig):
-    """
-    This class describes an INI configuration.
-    """
+    """This class describes an INI configuration."""
 
     def __init__(self, config_path: str):
         """
@@ -138,9 +128,9 @@ class INIConfig(AbstractConfig):
         :type		config_path:  str
         """
         self.config_path = config_path
-        self.config: Dict[Any, Any] = {}
+        self.config: dict[Any, Any] = {}
 
-    def get_loaded_config(self) -> Dict[Any, Any]:
+    def get_loaded_config(self) -> dict[Any, Any]:
         """
         Gets the loaded configuration.
 
@@ -154,9 +144,7 @@ class INIConfig(AbstractConfig):
 
 
 class YAMLConfig(AbstractConfig):
-    """
-    This class describes an yaml configuration.
-    """
+    """This class describes an yaml configuration."""
 
     def __init__(self, config_path: str):
         """
@@ -166,9 +154,9 @@ class YAMLConfig(AbstractConfig):
         :type		config_path:  str
         """
         self.config_path = config_path
-        self.config: Dict[Any, Any] = {}
+        self.config: dict[Any, Any] = {}
 
-    def get_loaded_config(self) -> Dict[Any, Any]:
+    def get_loaded_config(self) -> dict[Any, Any]:
         """
         Gets the loaded configuration.
 
@@ -182,9 +170,7 @@ class YAMLConfig(AbstractConfig):
 
 
 class ConfigFactory(AbstractConfigFactory):
-    """
-    Front-end to create configuration objects.
-    """
+    """Front-end to create configuration objects."""
 
     def __init__(self, config_path: str):
         """
@@ -217,9 +203,7 @@ class ConfigFactory(AbstractConfigFactory):
 
 
 class ConfigurationProvider:
-    """
-    This class describes a configuration provider.
-    """
+    """This class describes a configuration provider."""
 
     def __init__(self, config_path: str):
         """
@@ -238,5 +222,4 @@ class ConfigurationProvider:
         :returns:	The instance.
         :rtype:		AbstractConfig
         """
-
         return self.config.get_loaded_config()

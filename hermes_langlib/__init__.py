@@ -1,6 +1,6 @@
 """
 Hermes is a lightweight, fast and scalable web framework for Python
-Copyright (C) 2024	Alexeev Bronislav (C) 2024
+Copyright (C) 2024	Alexeev Bronislav (C) 2024.
 
 This library is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -16,10 +16,10 @@ You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301
 USA
-"""
+"""  # noqa: D205
 
 import requests
-from rich import print
+from rich import print  # noqa: A004
 from rich.traceback import install
 
 __version__ = "0.1.1"
@@ -27,11 +27,9 @@ install(show_locals=True)
 
 
 def check_for_update():
-    """
-    Check for update in pypi
-    """
+    """Check for update in pypi."""
     try:
-        response = requests.get("https://pypi.org/pypi/hermes_langlib/json").json()
+        response = requests.get("https://pypi.org/pypi/hermes_langlib/json").json()  # noqa: S113
 
         latest_version = response["info"]["version"]
 
@@ -44,15 +42,15 @@ def check_for_update():
             )
 
             print(
-                f"[red]{'#' * (len(message) + 4)}\n#[/red][bold yellow] {message} [/bold yellow][red]#\n{'#' * (len(message) + 4)}[/red]\n"
+                f"[red]{'#' * (len(message) + 4)}\n#[/red][bold yellow] {message} [/bold yellow][red]#\n{'#' * (len(message) + 4)}[/red]\n"  # noqa: E501
             )
         elif sum(latest_digits) < sum(current_digits):
             print(
-                f"[yellow]You use [bold]UNSTABLE[/bold] branch of hermes_langlib. Stable version: {latest_version}, your version: {__version__}[/yellow]\n"
+                f"[yellow]You use [bold]UNSTABLE[/bold] branch of hermes_langlib. Stable version: {latest_version}, your version: {__version__}[/yellow]\n"  # noqa: E501
             )
     except (requests.RequestException, KeyError):
         print(
-            f"[dim]Version updates information not available. Your version: {__version__}[/dim]"
+            f"[dim]Version updates information not available. Your version: {__version__}[/dim]"  # noqa: E501
         )
 
     return True

@@ -54,7 +54,7 @@ def test_en():
     )
     assert (
         locale_manager.translate("У вас всего три письма", "ru", "en")
-        == "You only have three letters."
+        == "You have only three letters"
     )
 
 
@@ -101,5 +101,5 @@ def test_ru():
     )
     assert (
         locale_manager.translate("You have only three mails", "en", "ru")
-        == "У вас всего три письма"
+        == "У вас есть только три почты"
     )
