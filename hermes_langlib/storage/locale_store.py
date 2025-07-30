@@ -53,7 +53,7 @@ class LocaleStorage(BaseStorage):
 
     def get_supported_locales(
         self,
-        dictionary_for_default: Optional[bool] = False,  # noqa: FBT001, FBT002
+        dictionary_for_default: Optional[bool] = False,  # noqa: FBT002
     ) -> list[str]:
         """
         Gets the supported locales.

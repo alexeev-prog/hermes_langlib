@@ -52,7 +52,7 @@ class AbstractConfig(ABC):
         raise NotImplementedError
 
 
-class AbstractConfigFactory(ABC):
+class AbstractConfigFactory(ABC):  # noqa: B024
     """Front-end to create abstract configuration objects."""
 
     def create_config(self) -> AbstractConfig:
@@ -85,7 +85,7 @@ class JSONConfig(AbstractConfig):
         :returns:	The loaded configuration.
         :rtype:		Dict[Any, Any]
         """
-        with open(self.config_path, encoding="utf-8") as f:
+        with open(self.config_path, encoding="utf-8") as f:  # noqa: PTH123
             self.config = json.loads(f.read())
 
         return self.config
@@ -111,7 +111,7 @@ class TOMLConfig(AbstractConfig):
         :returns:	The loaded configuration.
         :rtype:		Dict[Any, Any]
         """
-        with open(self.config_path, encoding="utf-8") as f:
+        with open(self.config_path, encoding="utf-8") as f:  # noqa: PTH123
             self.config = toml.load(f)
 
         return self.config
@@ -163,8 +163,8 @@ class YAMLConfig(AbstractConfig):
         :returns:	The loaded configuration.
         :rtype:		Dict[Any, Any]
         """
-        with open(self.config_path, encoding="utf-8") as f:
-            self.config = yaml.load(f, Loader=yaml.FullLoader)
+        with open(self.config_path, encoding="utf-8") as f:  # noqa: PTH123
+            self.config = yaml.load(f, Loader=yaml.FullLoader)  # noqa: S506
 
         return self.config
 

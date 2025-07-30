@@ -6,7 +6,7 @@ class Singleton(type):
     global point of access to it.
     """
 
-    _instances = {}
+    _instances = {}  # noqa: RUF012
 
     def __call__(cls: object, *args, **kwargs):
         if cls not in cls._instances:

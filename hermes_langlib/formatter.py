@@ -17,7 +17,7 @@ class BaseFormatter(ABC):
         raise NotImplementedError
 
 
-class PluralFormatter(BaseFormatter):
+class PluralFormatter(BaseFormatter):  # noqa: D101
     @staticmethod
     def format_string(
         locales: Union[dict[str, str], dict[str, dict[str, Any]]], **kwargs

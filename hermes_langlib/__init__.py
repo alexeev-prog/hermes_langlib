@@ -22,7 +22,7 @@ import requests
 from rich import print  # noqa: A004
 from rich.traceback import install
 
-__version__ = "0.1.1"
+__version__ = "0.3.0"
 install(show_locals=True)
 
 
